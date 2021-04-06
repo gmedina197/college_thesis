@@ -1,4 +1,8 @@
 "use strict";
+
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
@@ -8,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       password_hash: DataTypes.STRING,
       password: DataTypes.VIRTUAL,
       created_at: DataTypes.DATE,
-      updated_at: DataTypes.DATE
+      updated_at: DataTypes.DATE,
     },
     {
       hooks: {
@@ -20,12 +24,12 @@ module.exports = (sequelize, DataTypes) => {
       },
     }
   );
-  
-  User.prototype.checkPassword = function(password) {
+
+  User.prototype.checkPassword = function (password) {
     return bcrypt.compare(password, this.password_hash);
   };
 
-  User.prototype.generateToken = function() {
+  User.prototype.generateToken = function () {
     return jwt.sign({ id: this.id }, process.env.APP_SECRET);
   };
 
