@@ -18,6 +18,7 @@ class AppController {
 
   routes() {
     this.express.use("/users/", require("./routes/users"));
+    this.express.use("/cars/", require("./routes/cars"));
     this.express.use("", require("./routes/auth"));
   }
 }

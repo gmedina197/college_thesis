@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Car } = require("../models");
 
 class UserController {
   async save(req, res) {
@@ -27,7 +27,14 @@ class UserController {
 
   async get(req, res) {
     try {
-      const user = await User.findOne({ where: { id: req.params.userId } });
+      const user = await User.findOne({
+        where: { id: req.params.userId },
+        include: [
+          {
+            model: Car,
+          },
+        ],
+      });
 
       if (!user) {
         return res.status(404).json({ message: "User does not exist" });
@@ -59,7 +66,13 @@ class UserController {
 
   async list(req, res) {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({
+        include: [
+          {
+            model: Car,
+          },
+        ],
+      });
 
       return res.json(users.map((u) => u.toJSON()));
     } catch (error) {
