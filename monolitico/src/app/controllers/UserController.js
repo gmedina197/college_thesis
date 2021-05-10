@@ -21,6 +21,7 @@ class UserController {
 
       return res.json(newUser.toJSON());
     } catch (error) {
+      console.log(error)
       return res.status(500).json({ message: error });
     }
   }
