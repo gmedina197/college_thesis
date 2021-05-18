@@ -1,4 +1,4 @@
-const { user: User } = require("../models");
+const { User } = require("../models");
 
 class UserController {
   async save(req, res) {

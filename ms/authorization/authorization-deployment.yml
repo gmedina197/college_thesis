@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-crud-deployment
+  name: authorization-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nodejs
+      app: nodejs-authorization
   template:
     metadata:
       labels:
-        app: nodejs
+        app: nodejs-authorization
     spec:
       containers:
-        - name: ms-user-crud
-          image: gmedina197/ms-user-crud:2.1
+        - name: ms-authorization
+          image: gmedina197/ms-authorization:latest
           env:
             - name: DB_URL
               value: postgresql://postgresadmin:admin123@postgres:5432/postgresdb
@@ -28,4 +28,4 @@ spec:
               memory: 256Mi
               cpu: "0.2"
           ports:
-            - containerPort: 3000
+            - containerPort: 5000

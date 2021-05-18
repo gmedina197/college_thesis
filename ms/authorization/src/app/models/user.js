@@ -1,6 +1,7 @@
 "use strict";
 
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
@@ -10,6 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+
+    checkPassword(password) {
+      return bcrypt.compare(password, this.password_hash);
+    }
+
+    generateToken() {
+      return jwt.sign({ id: this.id }, process.env.APP_SECRET);
+    }
+
     static associate(models) {
       // define association here
     }
