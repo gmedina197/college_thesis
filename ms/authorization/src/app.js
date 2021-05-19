@@ -18,6 +18,7 @@ class AppController {
 
   routes() {
     this.express.use("/auth/", require("./routes/auth"));
+    this.express.use("", require("./routes/healthcheck"));
   }
 }
 

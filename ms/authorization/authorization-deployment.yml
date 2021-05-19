@@ -20,6 +20,10 @@ spec:
               value: postgresql://postgresadmin:admin123@postgres:5432/postgresdb
             - name: DB_DIALECT
               value: postgres
+            - name: PORT
+              value: "5000"
+            - name: APP_SECRET
+              value: tccmedina
           resources:
             limits:
               memory: 512Mi
