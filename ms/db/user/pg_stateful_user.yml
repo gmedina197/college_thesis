@@ -1,32 +1,32 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: postgres-demo
+  name: postgres-user-db
 spec:
-  serviceName: "postgres"
+  serviceName: "postgres-user"
   replicas: 1
   selector:
     matchLabels:
-      app: postgres
+      app: postgres-user
   template:
     metadata:
       labels:
-        app: postgres
+        app: postgres-user
     spec:
       containers:
-        - name: postgres
+        - name: postgres-user
           image: postgres:latest
           envFrom:
             - configMapRef:
                 name: postgres-config
           ports:
             - containerPort: 5432
-              name: postgredb
+              name: postgredb-user
           volumeMounts:
-            - name: postgredb
+            - name: postgredb-user
               mountPath: /var/lib/postgresql/data
               subPath: postgres
       volumes:
-        - name: postgredb
+        - name: postgredb-user
           persistentVolumeClaim:
-            claimName: postgres-pv-claim
+            claimName: postgres-pv-claim-user

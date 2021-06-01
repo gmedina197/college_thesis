@@ -1,13 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres
+  name: postgres-user
   labels:
-    app: postgres
+    app: postgres-user
 spec:
   ports:
   - port: 5432
-    name: postgres
-  clusterIP: None
+    name: postgres-user
   selector:
-    app: postgres
+    app: postgres-user

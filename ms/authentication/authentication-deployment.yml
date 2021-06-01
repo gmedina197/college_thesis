@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentication-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-authentication
+  template:
+    metadata:
+      labels:
+        app: nodejs-authentication
+    spec:
+      containers:
+      - name: ms-authentication
+        image: gmedina197/ms-authentication:latest
+        env:
+          - name: PORT
+            value: "5000"
+          - name: APP_SECRET
+            value: tccmedina
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000

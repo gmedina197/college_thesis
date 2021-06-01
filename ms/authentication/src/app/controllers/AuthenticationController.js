@@ -1,24 +1,27 @@
-const { User } = require("../models");
+const jwt = require("jsonwebtoken");
+class AuthenticationController {
+  async auth(req, res) {
+    const token = req.body.token;
 
-class SessionController {
-  async store(req, res) {
-    const { email, password } = req.body;
-
-    const user = await User.findOne({ where: { email } });
-
-    if (!user) {
-      return res.status(401).json({ message: "User not found" });
+    if (!token) {
+      return res.status(401).json({ message: "Token not provided" });
     }
 
-    if (!(await user.checkPassword(password))) {
-      return res.status(401).json({ message: "Incorrect password" });
-    }
+    try {
+      const decoded = await jwt.verify(token, process.env.APP_SECRET);
 
-    return res.json({
-      user,
-      token: user.generateToken()
-    });
+      return res.json({
+        userId: decoded.id,
+        authenticated: true,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(401).json({
+        authenticated: false,
+        message: "Token invalid",
+      });
+    }
   }
 }
 
-module.exports = new SessionController();
+module.exports = new AuthenticationController();

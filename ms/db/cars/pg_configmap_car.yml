@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: postgres-config
+  name: postgres-config-car
   labels:
-    app: postgres
+    app: postgres-car
 data:
   POSTGRES_DB: postgresdb
   POSTGRES_USER: postgresadmin

@@ -1,5 +1,5 @@
 require("dotenv").config({
-    path: process.env.NODE_ENV === "test" ? ".env.test" : ".env",
+    path: process.env.NODE_ENV === "prod" ? ".env.prod" : ".env.dev",
   });
   
   const express = require("express");
@@ -17,7 +17,7 @@ require("dotenv").config({
     }
   
     routes() {
-      //this.express.use("/auth/", require("./routes/auth"));
+      this.express.use("/authenticate/", require("./routes/auth"));
     }
   }
   
