@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-crud-deployment
+  name: car-crud-deployment
 spec:
   replicas: 1
   selector:
@@ -13,11 +13,11 @@ spec:
         app: nodejs
     spec:
       containers:
-        - name: ms-user-crud
-          image: gmedina197/ms-user-crud:latest
+        - name: ms-car-crud
+          image: gmedina197/ms-car-crud:latest
           env:
             - name: DB_URL
-              value: postgresql://postgresadmin:admin123@postgres-user:5432/postgresdb
+              value: postgresql://postgresadmin:admin123@postgres-car:5432/postgresdb
             - name: DB_DIALECT
               value: postgres
             - name: AUTH_URL
@@ -30,4 +30,4 @@ spec:
               memory: 256Mi
               cpu: "0.2"
           ports:
-            - containerPort: 3000
+            - containerPort: 5001

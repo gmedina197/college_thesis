@@ -17,7 +17,7 @@ class AppController {
   }
 
   routes() {
-    //this.express.use("/cars/", require("./routes/cars"));
+    this.express.use("/cars/", require("./routes/cars"));
   }
 }
 

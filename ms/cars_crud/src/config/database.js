@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 
 if (!process.env.DB_URL) {
   dotenv.config({
-    path: process.env.NODE_ENV === "production" ? ".env.prod" : ".env.dev",
+    path: process.env.NODE_ENV === "production" ? ".env.prod" : ".env",
   });
 }
 

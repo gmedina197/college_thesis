@@ -17,7 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     model: DataTypes.STRING,
     year: DataTypes.INTEGER,
     color: DataTypes.STRING,
-    owner: DataTypes.INTEGER
+    owner: DataTypes.INTEGER,
+    created_at: DataTypes.DATE,
+    updated_at: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'Car',

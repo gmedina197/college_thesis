@@ -17,7 +17,7 @@ spec:
           image: gmedina197/ms-authorization:latest
           env:
             - name: DB_URL
-              value: postgresql://postgresadmin:admin123@172.17.0.3:5432/postgresdb
+              value: postgresql://postgresadmin:admin123@postgres-user:5432/postgresdb
             - name: DB_DIALECT
               value: postgres
             - name: PORT

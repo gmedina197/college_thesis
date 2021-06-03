@@ -23,3 +23,10 @@ spec:
                 name: user-crud-deployment
                 port:
                   number: 3000
+          - pathType: Prefix
+            path: /cars
+            backend:
+              service:
+                name: car-crud-deployment
+                port:
+                  number: 5001
