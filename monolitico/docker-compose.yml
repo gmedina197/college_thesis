@@ -1,13 +1,13 @@
 version: "3"
 services:
   app:
-    build: .
+    image: gmedina197/monolitico:latest
     entrypoint: ["/bin/sh", "./entrypoint.sh"]
     depends_on:
       - postgres
     environment:
       APP_SECRET: tcc_medina
-      DB_URL: postgresql://postgres:postgres@postgres:5432/tcc
+      DB_URL: postgres://postgres:postgres@postgres:5432/tcc
       DB_DIALECT: postgres
       NODE_ENV: production
       PORT: 3000
@@ -16,9 +16,14 @@ services:
 
   postgres:
     image: postgres:latest
+    volumes:
+        - db_data:/var/lib/postgresql/data
     ports:
       - "35432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: tcc
+
+volumes:
+    db_data:

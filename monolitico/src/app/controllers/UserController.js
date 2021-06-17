@@ -1,11 +1,5 @@
 const { User, Car } = require("../models");
 
-function sleep(ms) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}   
-
 class UserController {
   async save(req, res) {
     try {
@@ -24,8 +18,6 @@ class UserController {
         created_at: new Date(),
         updated_at: new Date(),
       });
-
-      await sleep(3000)
 
       return res.json(newUser.toJSON());
     } catch (error) {
@@ -82,8 +74,6 @@ class UserController {
           },
         ],
       });
-
-      await sleep(2000)
 
       return res.json(users.map((u) => u.toJSON()));
     } catch (error) {
